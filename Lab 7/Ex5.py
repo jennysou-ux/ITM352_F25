@@ -7,8 +7,6 @@ ages_tuple = (34, 36, 26, 60, 48)
 celebrities_list = []
 ages_list = []
 
-for celeb in celebrities_tuple:
-    celebrities_list.append(celeb)  
 
 for age in ages_tuple:
     ages_list.append(age)

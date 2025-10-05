@@ -12,13 +12,14 @@ def determine_progress2(hits, spins):
     ]
 
     hits_spins_ratio = hits / spins if spins != 0 else -1
-
+    
     index = (
         0 if hits_spins_ratio <= 0 else
         1 + (hits_spins_ratio >= 0.25) + (hits_spins_ratio >= 0.5 and hits < spins)
     )
 
     return progress_messages[index]
+
 
 
     
