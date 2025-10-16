@@ -1,7 +1,7 @@
 # Improved quiz game with questions and answers in a dictionary.
 # Iterate until the user enters a correct alternative.
 # Keep track of correct answers.
-# Name: Jenny Soukhaseum
+# Name: Rick Kazman
 # Date: 10/2/25
 
 from string import ascii_letters
