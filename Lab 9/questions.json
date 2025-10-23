@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is the capital of France?",
+    "options": {
+      "a": "Paris",
+      "b": "London",
+      "c": "Rome",
+      "d": "Berlin"
+    },
+    "answer": "a"
+  },
+  {
+    "question": "Who wrote the play 'Romeo and Juliet'?",
+    "options": {
+      "a": "Oscar Wilde",
+      "b": "William Shakespeare",
+      "c": "George Bernard Shaw",
+      "d": "Jane Austen"
+    },
+    "answer": "b"
+  },
+  {
+    "question": "What is the chemical symbol for gold?",
+    "options": {
+      "a": "Au",
+      "b": "Ag",
+      "c": "Gd",
+      "d": "Go"
+    },
+    "answer": "a"
+  },
+  {
+    "question": "Which planet is known as the Red Planet?",
+    "options": {
+      "a": "Venus",
+      "b": "Mars",
+      "c": "Jupiter",
+      "d": "Saturn"
+    },
+    "answer": "b"
+  },
+  {
+    "question": "In computing, what does CPU stand for?",
+    "options": {
+      "a": "Central Process Unit",
+      "b": "Computer Primary Unit",
+      "c": "Central Processing Unit",
+      "d": "Control Processing Unit"
+    },
+    "answer": "c"
+  }
+]
