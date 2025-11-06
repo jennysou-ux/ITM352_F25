@@ -16,10 +16,7 @@ try:
     df['order_date'] = pd.to_datetime(df['order_date'], errors='coerce')
     df['sales'] = df['quantity'] * df['unit_price']
 
-    df['quantity'] = pd.to_numeric(df['quantity'], errors='coerce')
-    df['unit_price'] = pd.to_numeric(df['unit_price'], errors='coerce')
 
-    
     # Create a pivot table aggregating sales by region and order type
     pivot_table = pd.pivot_table(df,
                                  values='sales',
