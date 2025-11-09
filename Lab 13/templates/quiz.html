@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=0.8">
+  <title>Quick Quiz</title>
+</head>
+<body>
+  <h1>Quick Quiz</h1>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, msg in messages %}
+        <div>{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% if finished %}
+    <h2>Quiz Complete</h2>
+    <p>Your score: {{ score }} / {{ total }}</p>
+    <p><a href="{{ url_for('quiz_reset') }}">Play again</a> | <a href="{{ url_for('index') }}">Back to memes</a></p>
+  {% else %}
+    <h2>Question {{ index }} of {{ total }}</h2>
+    <p>{{ question }}</p>
+
+    <form method="post" action="{{ url_for('quiz') }}">
+      {% for i, choice in enumerate(choices) %}
+        <div>
+          <label>
+            <input type="radio" name="choice" value="{{ i }}" required>
+            {{ choice }}
+          </label>
+        </div>
+      {% endfor %}
+      <div style="margin-top:1rem;">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    <p><a href="{{ url_for('index') }}">Back to memes</a></p>
+  {% endif %}
+</body>
+</html>

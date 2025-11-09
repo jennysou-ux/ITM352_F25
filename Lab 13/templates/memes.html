@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=0.8">
+  <title>Memes'R'Us</title>
+  <meta http-equiv="refresh" content="10; url=http://127.0.0.1:5000" />
+</head>
+<body>
+  <h1>Memes'R'Us</h1>
+
+  {% if error_message %}
+    <p style="color:red;">Error fetching meme: {{ error_message }}</p>
+  {% else %}
+    {% if meme_url %}
+      <img src="{{ meme_url }}" alt="Meme" style="max-width:90%;height:auto;">
+      <p>Subreddit: {{ subreddit }}</p>
+      {% if title %}<p>{{ title }}</p>{% endif %}
+    {% else %}
+      <p>No meme available right now.</p>
+    {% endif %}
+  {% endif %}
+
+  <p><a href="{{ url_for('quiz') }}">Play the quiz</a></p>
+  <p>Page refreshes every 10 seconds.</p>
+</body>
+</html>

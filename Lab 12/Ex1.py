@@ -6,7 +6,7 @@ import urllib.request
 import ssl 
 
 ssl.create_default_https_context = ssl._create_unverified_context
-url = https://data.cityofchicago.org/Historic-Preservation/Landmark-Districts/zidz-sdfj/about_data
+url = "https://data.cityofchicago.org/Historic-Preservation/Landmark-Districts/zidz-sdfj/about_data"
 
 # open the web page 
 print("Opening URL: ", url)
