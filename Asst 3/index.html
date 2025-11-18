@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% if username %}
+        <h2>Welcome back, {{ username }}!</h2>
+        <p>Your past scores:</p>
+        <ul>
+            {% for s in history %}
+                <li>{{ s.score }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('quiz') }}">Start New Quiz</a>
+        <a href="{{ url_for('leaderboard') }}">Leaderboard</a>
+    {% else %}
+        <form action="{{ url_for('setname') }}" method="post">
+            <label>Enter your name:</label>
+            <input type="text" name="username" required>
+            <button type="submit">Start Quiz</button>
+        </form>
+    {% endif %}
+</body>
+</html>

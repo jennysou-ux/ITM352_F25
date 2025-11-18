@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Leaderboard</title></head>
+<body>
+    <h2>Top 10 Scores</h2>
+    <ol>
+        {% for s in scores %}
+            <li>{{ s.name }} - {{ s.score }}</li>
+        {% endfor %}
+    </ol>
+    <a href="{{ url_for('index') }}">Home</a>
+</body>
+</html>
