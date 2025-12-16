@@ -122,6 +122,16 @@ body {
     font-size: 1.1em;
 }
 
+/* Utilization tips */
+.util-tip, .category-tip {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    border: 1px solid #e2e6ea;
+    max-width: 500px;
+}
+
 .progress-fill {
     color: white;
     padding: 5px;

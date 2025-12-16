@@ -10,6 +10,7 @@
 # FINAL 8: Add emojis to Dashboard 
 # FINAL 9: Add tips logic and display under the progress bar 
 # FINAL 10: Add seasonal spending 
+# FINAL 11: User can add their own categories
 
 from flask import Flask, render_template, request, redirect, url_for, make_response, session, flash
 import json
@@ -24,9 +25,17 @@ import matplotlib.pyplot as plt
 
 from rapidfuzz import fuzz # used for fuzzy matching
 
+def safe_float(x, default=None):
+    try:
+        return float(x)
+    except (ValueError, TypeError):
+        return default
+
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
+
+DEFAULT_CATEGORIES = ["Groceries", "Entertainment", "Transportation", "Bills", "Food & Dining", "Miscellaneous/Other"]
 
 # -------------------------------
 # KEYWORD TO CATEGORY MAPPING (FOR CSV FILE - MENU #2)
@@ -146,10 +155,16 @@ def get_top_category(username):
         with open('transactions.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                if row['username'] == username:
-                    cat = row['category']
-                    amt = float(row['amount'])
-                    totals[cat] = totals.get(cat, 0) + amt
+                if row.get('username') != username:
+                    continue
+
+                cat = row.get('category')
+                amt = safe_float(row.get('amount'))
+
+                if not cat or amt is None:
+                    continue
+
+                totals[cat] = totals.get(cat, 0) + amt
     except FileNotFoundError:
         return None
 
@@ -183,7 +198,10 @@ def spending_by_month_and_season(username):
                 if row.get('username') != username:
                     continue
 
-                amount = float(row.get('amount', 0) or 0)
+                amount = safe_float(row.get('amount'))
+                if amount is None:
+                    continue
+
 
                 # Skip older rows that don't have date yet
                 date_str = row.get('date')
@@ -318,7 +336,8 @@ def register():
                 "password": password,
                 "credit_limit": None,
                 "current_balance": None,
-                "first_time": True
+                "first_time": True,
+                "categories": DEFAULT_CATEGORIES.copy()
             }
 
             save_users(users)
@@ -392,14 +411,9 @@ def add_transaction():
     if not username:
         return redirect(url_for('login'))
     
-    categories = [
-        "Groceries",
-        "Entertainment",
-        "Transportation",
-        "Bills",
-        "Food & Dining",
-        "Miscellaneous/Other"
-    ]
+    user = users[username]
+    categories = user.get("categories", DEFAULT_CATEGORIES.copy())
+
 
     if request.method == 'POST':
         try:
@@ -409,14 +423,29 @@ def add_transaction():
             if action in ['no', 'return']:
                 return redirect(url_for('home'))
 
-            category = request.form['category']
+            new_category = request.form.get("new_category", "").strip()
+            
+            if new_category:
+                # save new category (avoid duplicates)
+                if new_category.lower() not in [c.lower() for c in categories]:
+                    categories.append(new_category)
+                    user["categories"] = categories
+                    save_users(users)
+                category = new_category
+            else:
+                category = request.form.get("category")
+
+            if not category:
+                flash("Please select a category or add a new one.", "danger")
+                return render_template('add_transaction.html', categories=categories)
+    
+            #--- amount ---
             amount = float(request.form['amount'])
 
             if amount <= 0:
                 flash('Amount must be greater than zero', 'danger')
                 return render_template('add_transaction.html', categories=categories)
-            
-            user = users[username]
+       
             if user['current_balance'] + amount > user['credit_limit']:
                 flash('Transaction exceeds credit limit.', 'danger')
                 return render_template('add_transaction.html', categories=categories)
@@ -547,7 +576,10 @@ def view_spending_summary():
             for row in reader:
                 if row['username'] == username:
                     category = row['category']
-                    amount = float(row['amount'])
+                    amount = safe_float(row.get('amount'))
+                    if amount is None:
+                        continue
+
 
                     summary[category] = summary.get(category, 0) + amount
                     total_spent += amount
@@ -610,7 +642,10 @@ def view_category_charts():
             for row in reader:
                 if row['username'] == username:
                     category = row['category']
-                    amount = float(row['amount'])
+                    amount = safe_float(row.get('amount'))
+                    if amount is None:
+                        continue
+
                     categories[category] = categories.get(category, 0) + amount
     except FileNotFoundError:
         flash('No transactions found.', 'info')
