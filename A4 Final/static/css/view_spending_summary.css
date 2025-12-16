@@ -1,0 +1,72 @@
+/* Body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Card container */
+.card {
+    background-color: #fff;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Heading */
+.card h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Table styling */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.summary-table th,
+.summary-table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.summary-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.summary-table tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+/* Totals */
+.totals p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Back link */
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #0056b3;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Expense Charts</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view_category_charts.css') }}">
+</head>
+<body>
+
+    <div class="card">
+        <h2>View Expense Charts</h2>
+
+        <form method="POST">
+            <label for="chart_type">Select Chart Type:</label>
+            <select name="chart_type" id="chart_type" required>
+                <option value="" disabled {% if not chart_type %}selected{% endif %}>-- Choose a chart --</option>
+                <option value="bar" {% if chart_type=='bar' %}selected{% endif %}>Bar Chart</option>
+                <option value="pie" {% if chart_type=='pie' %}selected{% endif %}>Pie Chart</option>
+                <option value="line" {% if chart_type=='line' %}selected{% endif %}>Line Chart</option>
+            </select>
+            <button type="submit">View Chart</button>
+        </form>
+
+        {% if chart_image %}
+            <div class="chart-container">
+                <h3>{{ chart_type|capitalize }} Chart</h3>
+                <img src="data:image/png;base64,{{ chart_image }}" alt="{{ chart_type }} chart">
+            </div>
+        {% elif chart_type %}
+            <p>No transactions to display for this chart type.</p>
+        {% else %}
+            <p>Select a chart type to view your spending.</p>
+        {% endif %}
+
+        <div class="back-link">
+            <a href="{{ url_for('home') }}">← Back to Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

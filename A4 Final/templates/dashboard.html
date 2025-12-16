@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+    <div class="dashboard-card">
+
+        <!-- Top-right Logout Button -->
+        <div class="logout-container">
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+        </div>
+
+        <!-- Top Section: Welcome + Credit Utilization (left) + Credit Info (right) -->
+        <div class="dashboard-top">
+            <!-- Left: Welcome + Utilization -->
+            <div class="dashboard-left-column">
+                <h1>Welcome, {{ full_name }}!</h1>
+                <p>This is your dashboard where you can see your credit information.</p>
+                <hr class="dashboard-separator">
+
+                <!-- Credit Utilization -->
+                <h2>Credit Utilization</h2>
+                {% if utilization is not none %}
+                    <p>
+                        <strong>Utilization:</strong>
+                        {{ "%.2f"|format(utilization) }}%
+                        <span class="util-mood">
+                            {{ util_emoji }} {{ util_label }}
+                         </span>
+                    </p>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill 
+                                    {% if utilization < 30 %}green{% elif utilization < 70 %}orange{% else %}red{% endif %}" 
+                             style="width: {{ utilization }}%;">
+                            {{ "%.2f"|format(utilization) }}%
+                        </div>
+                    </div>
+                {% else %}
+                    <p>Utilization data unavailable.</p>
+                {% endif %}
+            </div>
+
+            <!-- Right: Credit Information -->
+            <div class="dashboard-right-column">
+                <h2>Credit Information</h2>
+                {% if credit_limit is not none and current_balance is not none %}
+                    <p><strong>Credit Limit:</strong> ${{ "{:,.2f}".format(credit_limit) }}</p>
+                    <p><strong>Current Balance:</strong> ${{ "{:,.2f}".format(current_balance) }}</p>
+                    <p><strong>Available Credit:</strong> ${{ "{:,.2f}".format(credit_limit - current_balance) }}</p>
+                {% else %}
+                    <p>Please complete your credit setup.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Menu Buttons below top section -->
+        <h2>Menu</h2>
+        <div class="menu-buttons">
+            <a href="{{ url_for('add_transaction') }}" class="menu-btn">Add Transaction</a>
+            <a href="{{ url_for('import_transaction') }}" class="menu-btn">Import Transactions</a>
+            <a href="{{ url_for('view_spending_summary') }}" class="menu-btn">View Spending Summary</a>
+            <a href="{{ url_for('view_category_charts') }}" class="menu-btn">View Category Chart</a>
+            <a href="{{ url_for('change_credit_limit') }}" class="menu-btn">Change Credit Limit</a>
+            <a href="{{ url_for('update_balance') }}" class="menu-btn">Update Current Balance</a>
+        </div>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              {% if category != 'danger' %}
+                <p class="flash {% if category=='success' %}flash-success{% else %}flash-info{% endif %}">
+                    {{ message }}
+                </p>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+    </div>
+
+</body>
+</html>

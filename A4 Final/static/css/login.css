@@ -1,0 +1,75 @@
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for the form */
+.login-container {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 350px;
+    text-align: center;
+}
+
+/* Form heading */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Inputs styling */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 8px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #6a11cb;
+}
+
+/* Links styling */
+p a {
+    text-decoration: none;
+    color: #2575fc;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Flash messages */
+.flash-message {
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.flash-danger { background-color: #f8d7da; color: #721c24; }
+.flash-success { background-color: #d4edda; color: #155724; }
+.flash-info { background-color: #d1ecf1; color: #0c5460; }

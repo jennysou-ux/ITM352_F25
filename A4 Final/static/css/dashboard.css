@@ -1,0 +1,179 @@
+
+/* ===== General body styling ===== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* ===== Dashboard Card ===== */
+.dashboard-card {
+    max-width: 1200px;
+    min-height: 700px;
+    margin: 20px auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ===== Logout Button ===== */
+.logout-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+/* ===== Dashboard Top Section ===== */
+.dashboard-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.dashboard-welcome {
+    flex: 1;
+}
+
+.dashboard-right-column {
+    flex: 0 0 420px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Fancy horizontal line under welcome message */
+.dashboard-separator {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+    margin: 20px 0;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* ===== Dashboard Content (Left Column: Menu + Utilization) ===== */
+.dashboard-content {
+    display: flex;
+    gap: 30px;
+}
+
+/* Left Column: Menu & Utilization */
+.dashboard-left-column {
+    flex: 1;
+}
+
+/* Menu Buttons Container */
+.menu-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 245px);  /* 2 columns */
+    gap: 15px;                              /* spacing between buttons */
+    margin-top: 10px;
+}
+
+.menu-btn {
+    display: inline-block;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.menu-btn:hover {
+    background-color: #0056b3;
+}
+
+/* ===== Credit Utilization ===== */
+.progress-bar {
+    width: 100%;
+    max-width: 500px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+/* Utilization mood icon */
+.util-mood {
+    margin-left: 8px;
+    font-size: 1.1em;
+}
+
+.progress-fill {
+    color: white;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.green { background-color: green; }
+.orange { background-color: orange; }
+.red { background-color: red; }
+
+/* ===== Headings & Paragraphs ===== */
+h1, h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+/* ===== Flash messages ===== */
+.flash {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.flash-success { color: green; }
+.flash-info { color: blue; }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .dashboard-top {
+        flex-direction: column;
+    }
+
+    .dashboard-content {
+        flex-direction: column;
+    }
+
+    .menu-buttons {
+        grid-template-columns: 1fr;  /* stack buttons in one column */
+    }
+
+    .progress-bar {
+        max-width: 100%;
+    }
+
+    .dashboard-right-column {
+        flex: 1;
+        margin-top: 20px;
+    }
+}

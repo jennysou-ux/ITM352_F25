@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spending Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view_spending_summary.css') }}">
+</head>
+<body>
+
+<div class="card">
+    <h2>Spending Summary</h2>
+
+    {% if summary %}
+    <table class="summary-table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Total Spent ($)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category, amount in summary.items() %}
+            <tr>
+                <td>{{ category }}</td>
+                <td>{{ "%.2f"|format(amount) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="totals">
+        <p><strong>Total Spent:</strong> ${{ "%.2f"|format(total_spent) }}</p>
+        <p><strong>Current Balance:</strong> ${{ "%.2f"|format(current_balance) }}</p>
+        <p><strong>Credit Limit:</strong> ${{ "%.2f"|format(credit_limit) }}</p>
+        <p><strong>Credit Utilization:</strong> {{ utilization }}%</p>
+    </div>
+
+    {% else %}
+    <p>No spending data available.</p>
+    {% endif %}
+
+    <a href="{{ url_for('home') }}" class="back-link">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

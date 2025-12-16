@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First-Time Setup</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/setup_credit.css') }}">
+</head>
+
+<body>
+
+<div class="popup">
+    <h2>Welcome, {{ username }}!</h2>
+    <p>Please enter your credit details to continue.</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="messages">
+            {% for category, message in messages %}
+                <li class="error">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label for="credit_limit">Credit Limit ($):</label>
+        <input type="text" id="credit_limit" name="credit_limit" required>
+
+        <label for="current_balance">Current Balance ($):</label>
+        <input type="text" id="current_balance" name="current_balance" required>
+
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

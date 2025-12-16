@@ -8,7 +8,6 @@ print("\n ----- Credit Card Budgeter & Tracker -----")
 
 # EMOJI HELPER FUNCTIONS
 
-
 def utilization_emoji(utilization_percentage: float) -> str:
     """Return an emoji based on overall credit utilization."""
     if utilization_percentage < 10:
