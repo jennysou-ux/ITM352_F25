@@ -15,52 +15,52 @@
 
         <!-- Top Section: Welcome + Credit Utilization (left) + Credit Info (right) -->
         <div class="dashboard-top">
+
             <!-- Left: Welcome + Utilization -->
             <div class="dashboard-left-column">
                 <h1>Welcome, {{ full_name }}!</h1>
                 <p>This is your dashboard where you can see your credit information.</p>
                 <hr class="dashboard-separator">
 
-            <!-- Credit Utilization -->
-            <h2>Credit Utilization</h2>
-            {% if utilization is not none %}
-                <p>
-                    <strong>Utilization:</strong>
-                    {{ "%.2f"|format(utilization) }}%
-                    <span class="util-mood">
-                        {{ util_emoji }} {{ util_label }}
-                    </span>
-                </p>
-
-                <div class="progress-bar">
-                    <div class="progress-fill 
-                            {% if utilization < 30 %}green{% elif utilization < 70 %}orange{% else %}red{% endif %}" 
-                        style="width: {{ utilization }}%;">
+                <!-- Credit Utilization -->
+                <h2>Credit Utilization</h2>
+                {% if utilization is not none %}
+                    <p>
+                        <strong>Utilization:</strong>
                         {{ "%.2f"|format(utilization) }}%
+                        <span class="util-mood">
+                            {{ util_emoji }} {{ util_label }}
+                        </span>
+                    </p>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill 
+                                {% if utilization < 30 %}green{% elif utilization < 70 %}orange{% else %}red{% endif %}" 
+                            style="width: {{ utilization }}%;">
+                            {{ "%.2f"|format(utilization) }}%
+                        </div>
                     </div>
-                </div>
 
-                <p class="util-tip">{{ util_tip }}</p>
+                    <p class="util-tip">{{ util_tip }}</p>
 
-                {% if category_tip %}
-                    <p class="category-tip"><strong>Top spending area:</strong> {{ top_category }} — {{ category_tip }}</p>
+                    {% if category_tip %}
+                        <p class="category-tip">
+                            <strong>Top spending area:</strong> {{ top_category }} — {{ category_tip }}
+                        </p>
+                    {% endif %}
+                {% else %}
+                    <p>Utilization data unavailable.</p>
                 {% endif %}
 
-            {% else %}
-                <p>Utilization data unavailable.</p>
-            {% endif %}
-
-            <!-- Seasonal Spending (keep OUTSIDE utilization check) -->
-            <h2>Seasonal Spending</h2>
-            {% if best_season %}
-                <p><strong>Highest spending season:</strong> {{ best_season }}</p>
-                <p><strong>Highest spending month:</strong> {{ best_month_label }}</p>
-            {% else %}
-                <p>No dated transactions yet. Add/import transactions to see monthly & seasonal trends.</p>
-            {% endif %}
-    
-
-              
+                <!-- Seasonal Spending (keep OUTSIDE utilization check) -->
+                <h2>Seasonal Spending</h2>
+                {% if best_season %}
+                    <p><strong>Highest spending season:</strong> {{ best_season }}</p>
+                    <p><strong>Highest spending month:</strong> {{ best_month_label }}</p>
+                {% else %}
+                    <p>No dated transactions yet. Add/import transactions to see monthly & seasonal trends.</p>
+                {% endif %}
+            </div>
 
             <!-- Right: Credit Information -->
             <div class="dashboard-right-column">
@@ -73,6 +73,7 @@
                     <p>Please complete your credit setup.</p>
                 {% endif %}
             </div>
+
         </div>
 
         <!-- Menu Buttons below top section -->
