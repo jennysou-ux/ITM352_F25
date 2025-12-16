@@ -31,6 +31,12 @@
                             {{ util_emoji }} {{ util_label }}
                          </span>
                     </p>
+                    <p class="util-tip">{{ util_tip }}</p>
+
+                    {% if category_tip %}
+                        <p class="category-tip"><strong>Top spending area:</strong> {{ top_category }} — {{ category_tip }}</p>
+                    {% endif %}
+
 
                     <div class="progress-bar">
                         <div class="progress-fill 
