@@ -1,63 +1,100 @@
-/* General body style */
+/* Body styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   background-color: #f0f2f5;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   margin: 0;
 }
 
-/* Popup card style */
-.popup {
-    background-color: #ffffff;
-    width: 350px;
-    padding: 30px 25px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    text-align: center;
+
+/* Card container */
+.card {
+   background-color: #ffffff;
+   padding: 30px 25px;
+   border-radius: 12px;
+   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+   width: 100%;
+   max-width: 400px;
+   text-align: center;
 }
 
-/* Headings */
-.popup h2 {
-    margin-bottom: 10px;
-    color: #333;
+
+/* Heading */
+.card h2 {
+   margin-bottom: 15px;
+   color: #333;
 }
 
-.popup p {
-    margin-bottom: 20px;
-    color: #555;
+
+/* Paragraph */
+.card p {
+   margin-bottom: 20px;
+   color: #555;
+   font-size: 1.1rem;
 }
+
 
 /* Flash messages */
-.messages {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 15px;
+.messages p {
+   font-size: 0.9rem;
+   margin-bottom: 10px;
 }
 
-.messages .error {
-    color: #ff4d4f;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
+
+.messages .danger {
+   color: #ff4d4f;
 }
 
-/* Form styles */
+
+.messages .success {
+   color: #28a745;
+}
+
+
+.messages .info {
+   color: #007bff;
+}
+
+
+/* Form styling */
 form {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+   display: flex;
+   flex-direction: column;
+   text-align: left;
 }
+
 
 label {
-    margin-bottom: 5px;
-    font-weight: 600;
+   margin-bottom: 5px;
+   font-weight: 600;
 }
 
-input[type="text"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-s
+
+input[type="number"] {
+   padding: 10px;
+   margin-bottom: 15px;
+   border-radius: 8px;
+   border: 1px solid #ccc;
+   font-size: 1rem;
+}
+
+
+/* Button styling */
+button {
+   padding: 10px;
+   background-color: #007bff;
+   color: white;
+   border: none;
+   border-radius: 8px;
+   font-size: 1rem;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}
+
+
+button:hover {
+   background-color: #0056b3;
+}
